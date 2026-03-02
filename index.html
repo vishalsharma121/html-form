@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contact Form</title>
+    <title>Contact & Newsletter Forms</title>
 
     <style>
         body {
@@ -44,51 +44,80 @@
             border-radius: 5px;
             background-color: #f2f2f2;
             padding: 20px;
+            margin-bottom: 40px;
+        }
+
+        h3 {
+            margin-top: 40px;
         }
     </style>
 </head>
 
 <body>
 
-    <h3>Contact Form new</h3>
+    <!-- ================= CONTACT FORM ================= -->
+    <h3>Contact Form</h3>
 
     <div class="container">
-        <!-- IMPORTANT: Removed PHP action -->
-        <form method="POST">
+        <form id="contactForm" method="POST">
 
-            <label for="firstname">First Name</label>
-            <input type="text" id="firstname" name="firstname" placeholder="Your name..">
+            <label for="contact_firstname">First Name</label>
+            <input type="text" id="contact_firstname" name="firstname" placeholder="Your name..">
 
-            <label for="lastname">Last Name</label>
-            <input type="text" id="lastname" name="lastname" placeholder="Your last name..">
+            <label for="contact_lastname">Last Name</label>
+            <input type="text" id="contact_lastname" name="lastname" placeholder="Your last name..">
 
-            <!-- REQUIRED for HubSpot -->
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Your email.." required>
+            <label for="contact_email">Email</label>
+            <input type="email" id="contact_email" name="email" placeholder="Your email.." required>
 
             <label for="country">Country</label>
-            <select id="country" name="country">
+            <select name="country">
                 <option value="Australia">Australia</option>
                 <option value="Canada">Canada</option>
                 <option value="USA">USA</option>
             </select>
 
             <label for="message">Message</label>
-            <textarea id="message" name="message" placeholder="Write something.." style="height:200px"></textarea>
+            <textarea name="message" placeholder="Write something.." style="height:200px"></textarea>
 
-            <input type="submit" value="Submit">
+            <input type="submit" value="Send Message">
         </form>
     </div>
 
-    <!-- Optional: Prevent actual submission (for GitHub Pages testing) -->
+
+    <!-- ================= NEWSLETTER FORM ================= -->
+    <h3>Newsletter Subscription</h3>
+
+    <div class="container">
+        <form id="newsletterForm" method="POST">
+
+            <label for="newsletter_email">Email</label>
+            <input type="email" id="newsletter_email" name="email" placeholder="Enter your email.." required>
+
+            <input type="hidden" name="subscription_type" value="Newsletter">
+
+            <input type="submit" value="Subscribe">
+        </form>
+    </div>
+
+
+    <!-- ================= FORM HANDLERS ================= -->
     <script>
-        document.querySelector("form").addEventListener("submit", function (e) {
-            e.preventDefault();  // prevents page error
-            alert("Form submitted successfully!");
+        // Contact Form
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            alert("Contact form submitted successfully!");
+        });
+
+        // Newsletter Form
+        document.getElementById("newsletterForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            alert("Newsletter subscribed successfully!");
         });
     </script>
 
-    <!-- HubSpot Tracking Code -->
+
+    <!-- ================= HUBSPOT TRACKING ================= -->
     <!-- Start of HubSpot Embed Code -->
     <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/2480504.js"></script>
     <!-- End of HubSpot Embed Code -->
